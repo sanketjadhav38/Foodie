@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -380,4 +381,388 @@
         }
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie - Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Clean Background */
+        .cotn_principal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FFF6C4 0%, #FFE68A 100%);
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .cont_centrar {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        /* Login Container */
+        .cont_login {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* Forms */
+        .cont_form_login, .cont_form_sign_up {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .cont_form_active {
+            display: block;
+        }
+
+        .cont_form_login h2, .cont_form_sign_up h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .cont_form_login input, .cont_form_sign_up input {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(245, 245, 245, 0.9);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .cont_form_login input:focus, .cont_form_sign_up input:focus {
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.3);
+        }
+
+        /* Buttons */
+        .btn_login, .btn_sign_up {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #FFA726, #FB8C00);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn_login:hover, .btn_sign_up:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        .btn_sign_up {
+            background: linear-gradient(45deg, #FF7043, #F4511E);
+            box-shadow: 0 4px 15px rgba(244, 81, 30, 0.3);
+        }
+
+        .btn_sign_up:hover {
+            box-shadow: 0 6px 20px rgba(244, 81, 30, 0.4);
+        }
+
+        /* Toggle Links */
+        .toggle-form {
+            color: #666;
+            margin-top: 20px;
+            display: block;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-form:hover {
+            color: #FF9800;
+            text-decoration: underline;
+        }
+
+        /* Success message */
+        .success-message {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(76, 175, 80, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        /* Dashboard Page */
+        .dashboard-container {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #FFF6C4 0%, #FFE68A 100%);
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .dashboard-subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .option-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .option-button {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .option-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #FF9800;
+        }
+
+        .option-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .option-desc {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .cont_login {
+                padding: 30px 20px;
+            }
+            
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            
+            .dashboard-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+            
+            .option-buttons {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login/Signup Container -->
+    <div class="cotn_principal" id="loginContainer">
+        <div class="cont_centrar">
+            <div class="">
+                <img src="./main page/image/illutration/logo (2).png" alt="" width="150">
+            </div>
+            <div class="cont_login">
+                <!-- Login Form (shown by default) -->
+                <div class="cont_form_login cont_form_active">
+                    <h2>Welcome Back</h2>
+                    <input type="text" id="loginEmail" placeholder="Email Address" />
+                    <input type="password" id="loginPassword" placeholder="Password" />
+                    <button class="btn_login" onclick="login()">LOGIN</button>
+                    <a class="toggle-form" onclick="showSignup()">Don't have an account? Sign up</a>
+                </div>
+                
+                <!-- Signup Form (hidden by default) -->
+                <div class="cont_form_sign_up">
+                    <h2>Create Account</h2>
+                    <input type="text" id="signupEmail" placeholder="Email Address" />
+                    <input type="text" id="signupUsername" placeholder="Username" />
+                    <input type="password" id="signupPassword" placeholder="Password" />
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" />
+                    <button class="btn_sign_up" onclick="signup()">SIGN UP</button>
+                    <a class="toggle-form" onclick="showLogin()">Already have an account? Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div class="dashboard-container" id="dashboardContainer">
+        <h1 class="dashboard-title">Welcome to Foodie!</h1>
+        <p class="dashboard-subtitle">Select your role to continue your food journey</p>
+        
+        <div class="option-buttons">
+            <a href="./main page/main.html" class="option-button">
+                <i class="material-icons option-icon">person</i>
+                <h2 class="option-title">User</h2>
+                <p class="option-desc">Browse restaurants and order delicious meals</p>
+            </a>
+
+            <a href="./shop keeper/shopkeeper.html" class="option-button">
+                <i class="material-icons option-icon">store</i>
+                <h2 class="option-title">Shop Keeper</h2>
+                <p class="option-desc">Manage your restaurant and orders</p>
+            </a>
+
+            <a href="./Food-suppler/supply.html" class="option-button">
+                <i class="material-icons option-icon">local_shipping</i>
+                <h2 class="option-title">Wholesaler</h2>
+                <p class="option-desc">Supply ingredients to restaurants</p>
+            </a>
+            
+            <a href="./calculation of shopkeeper/cal.html" class="option-button">
+                <i class="material-icons option-icon">calculate</i>
+                <h2 class="option-title">Daily Tracker</h2>
+                <p class="option-desc">Manage your daily calculation </p>
+            </a>
+            
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message"></div>
+
+    <script>
+        // Toggle between login and signup forms
+        function showSignup() {
+            document.querySelector('.cont_form_login').classList.remove('cont_form_active');
+            document.querySelector('.cont_form_sign_up').classList.add('cont_form_active');
+        }
+
+        function showLogin() {
+            document.querySelector('.cont_form_sign_up').classList.remove('cont_form_active');
+            document.querySelector('.cont_form_login').classList.add('cont_form_active');
+        }
+
+        // Show success message
+        function showSuccessMessage(message) {
+            const successMsg = document.getElementById('successMessage');
+            successMsg.textContent = message;
+            successMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+        }
+
+        // Show dashboard
+        function showDashboard() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('dashboardContainer').style.display = 'block';
+        }
+
+        // Login function
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            showSuccessMessage('Successfully logged in! Redirecting...');
+            
+            setTimeout(() => {
+                showDashboard();
+            }, 2000);
+        }
+
+        // Signup function
+        function signup() {
+            const email = document.getElementById('signupEmail').value;
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (!email || !username || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+                return;
+            }
+            
+            showSuccessMessage('Account created successfully! Welcome to Foodie!');
+            
+            setTimeout(() => {
+                showDashboard();
+            }, 2000);
+        }
+    </script>
+</body>
+>>>>>>> da2b8fd2e87880b59750d09aa974ff22d05ffa23
 </html>
